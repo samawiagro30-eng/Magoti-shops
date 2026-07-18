@@ -12,15 +12,13 @@
 </head>
 <body>
 
-    <!-- ==========================================================================
-       1. TOP BAR (Taarifa fupi na Lugha)
-       ========================================================================== -->
+    <!-- 1. TOP BAR -->
     <div class="top-bar">
         <div class="top-left">
-            <span><i class="fas fa-truck"></i> Mzigo unasafirishwa mikoa yote ya Tanzania</span>
+            <span><i class="fas fa-truck"></i> <span id="text-shipping">Mzigo unasafirishwa mikoa yote ya Tanzania</span></span>
         </div>
         <div class="top-right">
-            <a href="tel:+255700000000"><i class="fas fa-phone"></i> +255 700 000 000</a>
+            <a href="tel:+255725669066"><i class="fas fa-phone"></i> +255 725 669 066</a>
             <select id="language-select" class="lang-switch" onchange="changeLanguage()">
                 <option value="sw" selected>Kiswahili</option>
                 <option value="en">English</option>
@@ -28,9 +26,7 @@
         </div>
     </div>
 
-    <!-- ==========================================================================
-       2. HEADER & NAVIGATION
-       ========================================================================== -->
+    <!-- 2. HEADER & NAVIGATION -->
     <header>
         <div class="navbar">
             <div class="logo">
@@ -44,8 +40,7 @@
                 <a href="#contact" class="nav-contact">Wasiliana Nasi</a>
             </nav>
             <div class="nav-icons">
-                <div class="search-trigger"><i class="fas fa-search"></i></div>
-                <div class="cart-trigger" onclick="toggleCart()">
+                <div class="cart-trigger" onclick="toggleCartModal()">
                     <i class="fas fa-shopping-bag"></i>
                     <span id="cart-count">0</span>
                 </div>
@@ -53,9 +48,7 @@
         </div>
     </header>
 
-    <!-- ==========================================================================
-       3. HERO SECTION (Sehemu ya Juu ya Kifahari)
-       ========================================================================== -->
+    <!-- 3. HERO SECTION -->
     <section class="hero" id="home">
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -64,151 +57,109 @@
             <p class="hero-desc">Weka oda yako mtandaoni moja kwa moja kutoka kwenye group letu bila kuhitaji kuja dukani. Tunatuma mikoa yote ya Tanzania kwa uaminifu mkubwa.</p>
             <div class="hero-buttons">
                 <a href="#categories" class="btn-shop">Angalia Bidhaa</a>
-                <a href="https://wa.me/255700000000" target="_blank" class="btn-contact">Chat Nasi WhatsApp</a>
+                <a href="https://wa.me/255725669066" target="_blank" class="btn-contact">Chat Nasi WhatsApp</a>
             </div>
         </div>
     </section>
 
-    <!-- ==========================================================================
-       4. SEARCH & FILTER (Kutafuta Bidhaa)
-       ========================================================================== -->
+    <!-- 4. SEARCH SECTION -->
     <div class="search-section">
         <div class="search-box">
-            <input type="text" id="search-input" placeholder="Tafuta mafuta, pafumu, au vipodozi...">
+            <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="Tafuta mafuta, pafumu, au vipodozi...">
             <button type="button"><i class="fas fa-search"></i></button>
         </div>
     </div>
 
-    <!-- ==========================================================================
-       5. CATEGORIES (Makundi ya Bidhaa)
-       ========================================================================== -->
+    <!-- 5. CATEGORIES -->
     <section class="categories" id="categories">
-        <h2>Makundi ya Bidhaa</h2>
+        <h2 id="text-cat-title">Makundi ya Bidhaa</h2>
         <div class="category-grid">
             <div class="category-card">
                 <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=500" alt="Perfumes">
-                <h3>Pafumu za Kiume & Kike</h3>
+                <h3 class="cat-p">Pafumu za Kiume & Kike</h3>
             </div>
             <div class="category-card">
                 <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?w=500" alt="Cosmetics">
-                <h3>Vipodozi (Cosmetics)</h3>
+                <h3 class="cat-c">Vipodozi (Cosmetics)</h3>
             </div>
             <div class="category-card">
                 <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500" alt="Body Oils">
-                <h3>Mafuta ya Mwili (Body Oils)</h3>
+                <h3 class="cat-b">Mafuta ya Mwili (Body Oils)</h3>
             </div>
             <div class="category-card">
                 <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500" alt="Miwani">
-                <h3>Miwani ya Nyumbani</h3>
+                <h3 class="cat-g">Miwani ya Nyumbani</h3>
             </div>
         </div>
     </section>
 
-    <!-- ==========================================================================
-       6. PRODUCT GRID (Sehemu ya Bidhaa na Bei za Jumla)
-       ========================================================================== -->
+    <!-- 6. PRODUCT GRID -->
     <section class="best-sellers" id="wholesale">
         <div class="section-title">
-            <h2>Mzigo Mpya & Bei za Jumla</h2>
-            <p>Chagua bidhaa na uweke oda yako sasa hivi</p>
+            <h2 id="text-prod-title">Mzigo Mpya &amp; Bei za Jumla</h2>
+            <p id="text-prod-sub">Chagua bidhaa na uweke oda yako sasa hivi</p>
         </div>
 
-        <div class="product-grid">
-            <!-- Bidhaa ya 1 -->
+        <div class="product-grid" id="product-container">
             <div class="product-card">
                 <span class="sale-badge">Jumla</span>
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=500" alt="Premium Perfume">
                 </div>
                 <div class="product-info">
-                    <h3>Royal Arabian Perfume (Set)</h3>
-                    <div class="rating">
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                    </div>
-                    <div class="price">TSh 45,000 <del>TSh 60,000</del></div>
+                    <h3 class="product-name">Royal Arabian Perfume (Set)</h3>
+                    <div class="price">TSh 45,000</div>
                     <div class="product-buttons">
-                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                        <button class="cart-btn" onclick="addToCart('Royal Arabian Perfume', 45000)">
-                            <i class="fas fa-shopping-cart"></i> Weka Oda
+                        <button class="cart-btn" onclick="addToCart('Royal Arabian Perfume (Set)', 45000)">
+                            <i class="fas fa-shopping-cart"></i> <span class="text-order-btn">Weka Oda</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Bidhaa ya 2 -->
             <div class="product-card">
                 <span class="new-badge">New</span>
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=500" alt="Glow Body Oil">
                 </div>
                 <div class="product-info">
-                    <h3>Organic Glow Body Oil (Dozens)</h3>
-                    <div class="rating">
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="far fa-star" style="color: var(--gold);"></i>
-                    </div>
-                    <div class="price">TSh 120,000 <span>/Karatani</span></div>
+                    <h3 class="product-name">Organic Glow Body Oil (Dozens)</h3>
+                    <div class="price">TSh 120,000</div>
                     <div class="product-buttons">
-                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
-                        <button class="cart-btn" onclick="addToCart('Organic Glow Body Oil', 120000)">
-                            <i class="fas fa-shopping-cart"></i> Weka Oda
+                        <button class="cart-btn" onclick="addToCart('Organic Glow Body Oil (Dozens)', 120000)">
+                            <i class="fas fa-shopping-cart"></i> <span class="text-order-btn">Weka Oda</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Bidhaa ya 3 -->
             <div class="product-card">
                 <span class="sale-badge">Jumla</span>
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500" alt="Matte Lipstick Set">
                 </div>
                 <div class="product-info">
-                    <h3>Luxury Matte Lipstick Set</h3>
-                    <div class="rating">
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                    </div>
-                    <div class="price">TSh 35,000 <del>TSh 50,000</del></div>
+                    <h3 class="product-name">Luxury Matte Lipstick Set</h3>
+                    <div class="price">TSh 35,000</div>
                     <div class="product-buttons">
-                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
                         <button class="cart-btn" onclick="addToCart('Luxury Matte Lipstick Set', 35000)">
-                            <i class="fas fa-shopping-cart"></i> Weka Oda
+                            <i class="fas fa-shopping-cart"></i> <span class="text-order-btn">Weka Oda</span>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Bidhaa ya 4 -->
             <div class="product-card">
                 <span class="sale-badge">Hot</span>
                 <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=500" alt="Premium Face Serum">
                 </div>
                 <div class="product-info">
-                    <h3>Vitamin C Face Serum Gold</h3>
-                    <div class="rating">
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="fas fa-star" style="color: var(--gold);"></i>
-                        <i class="far fa-star" style="color: var(--gold);"></i>
-                    </div>
-                    <div class="price">TSh 80,000 <span>/Boksi</span></div>
+                    <h3 class="product-name">Vitamin C Face Serum Gold</h3>
+                    <div class="price">TSh 80,000</div>
                     <div class="product-buttons">
-                        <button class="wishlist-btn"><i class="far fa-heart"></i></button>
                         <button class="cart-btn" onclick="addToCart('Vitamin C Face Serum Gold', 80000)">
-                            <i class="fas fa-shopping-cart"></i> Weka Oda
+                            <i class="fas fa-shopping-cart"></i> <span class="text-order-btn">Weka Oda</span>
                         </button>
                     </div>
                 </div>
@@ -216,48 +167,215 @@
         </div>
     </section>
 
-    <!-- ==========================================================================
-       7. FOOTER SECTION
-       ========================================================================== -->
+    <!-- 7. KIKAPU CHA ODA (MODAL) -->
+    <div id="cart-modal" onclick="closeCartOnOutsideClick(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; padding: 20px;">
+        <div style="background: #121212; border: 1px solid var(--gold); padding: 25px; border-radius: 8px; width: 100%; max-width: 500px; position: relative; box-shadow: 0 4px 20px rgba(212,175,55,0.15);">
+            <span onclick="toggleCartModal()" style="position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--text-gray);">&times;</span>
+            <h3 style="color: var(--gold); margin-bottom: 20px; font-size: 20px;"><i class="fas fa-shopping-bag"></i> <span id="text-cart-title">Oda Yako - MAGOTI SHOPS</span></h3>
+            
+            <div id="cart-items-list" style="max-height: 250px; overflow-y: auto; margin-bottom: 20px; border-bottom: 1px solid #222; padding-bottom: 15px;">
+                <p style="color: var(--text-gray); text-align: center;">Kikapu kiko wazi.</p>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px; margin-bottom: 25px;">
+                <span id="text-cart-total">JUMLA KUU:</span>
+                <span id="cart-total-price" style="color: var(--gold);">TSh 0</span>
+            </div>
+            
+            <button onclick="sendOrderToWhatsApp()" style="width: 100%; background: #25D366; color: white; border: none; padding: 14px; border-radius: 4px; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px;">
+                <i class="fab fa-whatsapp" style="font-size: 20px;"></i> <span id="text-whatsapp-btn">Tuma Oda WhatsApp Moja kwa Moja</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 8. FOOTER SECTION -->
     <footer id="contact" style="background-color: #000; padding: 40px 5%; border-top: 1px solid var(--glass-border); text-align: center; font-size: 14px; color: var(--text-gray);">
         <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; text-align: left; margin-bottom: 30px;">
             <div style="flex: 1; min-width: 250px;">
                 <h3 style="color: var(--gold); margin-bottom: 15px;">MAGOTI SHOPS</h3>
-                <p>Sisi ni wasambazaji wakuu wa vipodozi, mafuta ya mwili, na pafumu za kifahari kwa bei ya jumla nchini Tanzania.</p>
+                <p id="text-footer-about">Sisi ni wasambazaji wakuu wa vipodozi, mafuta ya mwili, na pafumu za kifahari kwa bei ya jumla nchini Tanzania.</p>
             </div>
             <div style="flex: 1; min-width: 250px;">
-                <h3 style="color: var(--gold); margin-bottom: 15px;">Mawasiliano</h3>
+                <h3 style="color: var(--gold); margin-bottom: 15px;" id="text-footer-contact">Mawasiliano</h3>
                 <p><i class="fas fa-envelope" style="color: var(--gold); margin-right: 8px;"></i> magotishops@gmail.com</p>
-                <p><i class="fas fa-phone" style="color: var(--gold); margin-right: 8px;"></i> +255 700 000 000</p>
+                <p><i class="fas fa-phone" style="color: var(--gold); margin-right: 8px;"></i> +255 725 669 066</p>
                 <p><i class="fas fa-map-marker-alt" style="color: var(--gold); margin-right: 8px;"></i> Dar es Salaam, Tanzania</p>
             </div>
         </div>
         <hr style="border: 0; border-top: 1px solid var(--glass-border); margin-bottom: 20px;">
-        <p>&copy; 2026 MAGOTI SHOPS. Haki zote zimehifadhiwa.</p>
+        <p>&copy; 2026 MAGOTI SHOPS. <span id="text-footer-rights">Haki zote zimehifadhiwa.</span></p>
     </footer>
 
-    <!-- JavaScript Rahisi ya Lugha na Kikapu (Demo Logic) -->
+    <!-- SYSTEM LOGIC -->
     <script>
-        let cartCount = 0;
+        let cart = [];
+
         function addToCart(name, price) {
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
-            alert(name + " imewekwa kwenye oda yako! Jumla ya vitu: " + cartCount);
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: name, price: price, quantity: 1 });
+            }
+            updateCartUI();
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        function updateCartUI() {
+            let totalCount = 0;
+            let totalPrice = 0;
+            let itemsContainer = document.getElementById('cart-items-list');
+            let lang = document.getElementById('language-select').value;
+            
+            if (cart.length === 0) {
+                let emptyMessage = lang === 'en' ? 'Your cart is empty.' : 'Kikapu kiko wazi.';
+                itemsContainer.innerHTML = `<p style="color: var(--text-gray); text-align: center;">${emptyMessage}</p>`;
+            } else {
+                itemsContainer.innerHTML = '';
+                cart.forEach((item, index) => {
+                    totalCount += item.quantity;
+                    totalPrice += (item.price * item.quantity);
+                    
+                    itemsContainer.innerHTML += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 14px;">
+                            <div>
+                                <span style="font-weight: 500; color: #fff;">${item.name}</span><br>
+                                <span style="color: var(--text-gray); font-size: 12px;">TSh ${item.price.toLocaleString()} x ${item.quantity}</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <div style="display: flex; align-items: center; background: #222; border-radius: 4px; border: 1px solid #333;">
+                                    <button onclick="changeQuantity(${index}, -1)" style="background: none; border: none; color: #fff; padding: 2px 8px; cursor: pointer; font-weight: bold;">-</button>
+                                    <span style="color: #fff; padding: 0 4px; font-size: 13px;">${item.quantity}</span>
+                                    <button onclick="changeQuantity(${index}, 1)" style="background: none; border: none; color: #fff; padding: 2px 8px; cursor: pointer; font-weight: bold;">+</button>
+                                </div>
+                                <span style="color: var(--gold); font-weight: 600; min-width: 80px; text-align: right;">TSh ${(item.price * item.quantity).toLocaleString()}</span>
+                                <i class="fas fa-trash-alt" onclick="removeFromCart(${index})" style="color: #ff4757; cursor: pointer; font-size: 13px; margin-left: 5px;"></i>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            document.getElementById('cart-count').innerText = totalCount;
+            document.getElementById('cart-total-price').innerText = "TSh " + totalPrice.toLocaleString();
+        }
+
+        function changeQuantity(index, change) {
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCartModal() {
+            let modal = document.getElementById('cart-modal');
+            modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'flex' : 'none';
+        }
+
+        function closeCartOnOutsideClick(event) {
+            if (event.target.id === 'cart-modal') {
+                toggleCartModal();
+            }
+        }
+
+        function filterProducts() {
+            let input = document.getElementById('search-input').value.toLowerCase();
+            let cards = document.getElementsByClassName('product-card');
+            
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].querySelector('.product-name').innerText.toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        function sendOrderToWhatsApp() {
+            let lang = document.getElementById('language-select').value;
+            if (cart.length === 0) {
+                let alertMsg = lang === 'en' ? "Your cart is empty!" : "Kikapu chako kiko wazi!";
+                alert(alertMsg);
+                return;
+            }
+            let phoneNumber = "255725669066";
+            
+            let message = lang === 'en' 
+                ? "*HELLO MAGOTI SHOPS, I WOULD LIKE TO PLACE THE FOLLOWING ORDER:*\n\n"
+                : "*HABARI MAGOTI SHOPS, NAOMBA KUWEKA ODA YA BIDHAA ZIFUATAZO:*\n\n";
+                
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                let itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                let qtyText = lang === 'en' ? 'Quantity' : 'Idadi';
+                let priceText = lang === 'en' ? 'Price' : 'Bei';
+                message += `${index + 1}. *${item.name}*\n   ${qtyText}: ${item.quantity}\n   ${priceText}: TSh ${itemTotal.toLocaleString()}\n\n`;
+            });
+
+            message += `--------------------------------\n`;
+            let totalTitle = lang === 'en' ? 'GRAND TOTAL' : 'JUMLA KUU';
+            message += `*${totalTitle}: TSh ${total.toLocaleString()}*\n--------------------------------\n`;
+            
+            message += lang === 'en'
+                ? `_Please confirm this order and the shipping arrangements to my region._`
+                : `_Tafadhali nithibitishie oda hii na utaratibu wa kutuma mkoani kwangu._`;
+
+            let encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
         }
 
         function changeLanguage() {
             let lang = document.getElementById('language-select').value;
             if(lang === 'en') {
+                // Hero Section
                 document.querySelector('.hero-title').innerText = "Premium Luxury Beauty & Cosmetics Wholesale";
                 document.querySelector('.hero-desc').innerText = "Place your wholesale orders directly online from our digital groups without visiting the store. Reliable delivery across all regions of Tanzania.";
                 document.querySelector('.btn-shop').innerText = "View Products";
+                
+                // Navigation
                 document.querySelector('.nav-home').innerText = "Home";
                 document.querySelector('.nav-cats').innerText = "All Products";
                 document.querySelector('.nav-wholesale').innerText = "Wholesale Prices";
                 document.querySelector('.nav-contact').innerText = "Contact Us";
+                
+                // Top bar & Search
+                document.getElementById('text-shipping').innerText = "We ship to all regions in Tanzania";
+                document.getElementById('search-input').placeholder = "Search oils, perfumes, or cosmetics...";
+                
+                // Categories
+                document.getElementById('text-cat-title').innerText = "Product Categories";
+                document.querySelector('.cat-p').innerText = "Men & Women Perfumes";
+                document.querySelector('.cat-c').innerText = "Cosmetics";
+                document.querySelector('.cat-b').innerText = "Body Oils";
+                document.querySelector('.cat-g').innerText = "Home Sunglasses";
+                
+                // Product Grid Text
+                document.getElementById('text-prod-title').innerText = "New Arrivals & Wholesale Prices";
+                document.getElementById('text-prod-sub').innerText = "Choose your items and place your order now";
+                let orderButtons = document.getElementsByClassName('text-order-btn');
+                for(let btn of orderButtons) { btn.innerText = "Order Now"; }
+                
+                // Cart Modal
+                document.getElementById('text-cart-title').innerText = "Your Order - MAGOTI SHOPS";
+                document.getElementById('text-cart-total').innerText = "TOTAL AMOUNT:";
+                document.getElementById('text-whatsapp-btn').innerText = "Send Order Directly to WhatsApp";
+                
+                // Footer
+                document.getElementById('text-footer-about').innerText = "We are the leading suppliers of luxury cosmetics, body oils, and premium perfumes at wholesale prices in Tanzania.";
+                document.getElementById('text-footer-contact').innerText = "Contact Info";
+                document.getElementById('text-footer-rights').innerText = "All rights reserved.";
             } else {
-                location.reload(); // Inarudisha Kiswahili cha msingi
+                location.reload();
             }
+            updateCartUI();
         }
     </script>
 </body>
